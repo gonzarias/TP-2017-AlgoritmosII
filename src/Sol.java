@@ -5,4 +5,8 @@ public class Sol extends CuerpoEstelar{
     public Sol() {
         this.posicion = new Posicion(0,0);
     }
+
+    public Posicion obtenerPosicion() {
+        return this.posicion;
+    }
 }

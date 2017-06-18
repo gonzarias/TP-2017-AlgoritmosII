@@ -24,6 +24,8 @@ public class Planeta extends CuerpoEstelar{
     }
 
     public void transcurrirDias(double diasTranscurridos) {
+
+        System.out.println(" Transcurriendo el dia..." + diasTranscurridos);
         double x = Math.cos(velocidadAngular * diasTranscurridos) * distanciaAlSol;
         double y = Math.sin(velocidadAngular * diasTranscurridos) * distanciaAlSol;
 
