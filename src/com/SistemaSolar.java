@@ -1,3 +1,8 @@
+package com;
+
+import clima.Clima;
+import condiciones.*;
+
 import java.util.ArrayList;
 
 
@@ -44,11 +49,15 @@ public class SistemaSolar {
 
         Condicion condicionSequia = new CondicionSequia();
         Condicion condicionLluvia = new CondicionLluvia();
-        Condicion condicionPresionYTemperatura = new CondicionPresionYTemperatura();
+        Condicion condicionLluviaIntensa = new CondicionLluviaIntensa();
+        Condicion condicionOptima = new CondicionOptima();
+        Condicion condicionDesconocida = new CondicionDesconocida();
 
         this.condiciones.add(condicionSequia);
         this.condiciones.add(condicionLluvia);
-        this.condiciones.add(condicionPresionYTemperatura);
+        this.condiciones.add(condicionLluviaIntensa);
+        this.condiciones.add(condicionOptima);
+        this.condiciones.add(condicionDesconocida);
     }
 
     public void addPlanetas(ArrayList<Planeta> planetas) {
@@ -63,7 +72,7 @@ public class SistemaSolar {
     public void obtenerClima (double dias){
         int i;
 
-        if (debug)  System.out.println(" Obtener Clima Iniciado...");
+        if (debug)  System.out.println(" Obtener clima.Clima Iniciado...");
 
         for (i=0;i<dias;i++) {
 

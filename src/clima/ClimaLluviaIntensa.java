@@ -1,3 +1,5 @@
+package clima;
+
 public class ClimaLluviaIntensa extends Clima {
 
 
