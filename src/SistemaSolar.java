@@ -42,13 +42,13 @@ public class SistemaSolar {
         this.planetas.add(felucia);
         this.planetas.add(peragus);
 
-        Condicion periodoSequia = new Condicion();
-        Condicion periodoLluvia = new Condicion();
-        Condicion optimaPresionYTemperatura = new Condicion();
+        Condicion condicionSequia = new CondicionSequia();
+        Condicion condicionLluvia = new CondicionLluvia();
+        Condicion condicionPresionYTemperatura = new CondicionPresionYTemperatura();
 
-        this.condiciones.add(periodoSequia);
-        this.condiciones.add(periodoLluvia);
-        this.condiciones.add(optimaPresionYTemperatura);
+        this.condiciones.add(condicionSequia);
+        this.condiciones.add(condicionLluvia);
+        this.condiciones.add(condicionPresionYTemperatura);
     }
 
     public void addPlanetas(ArrayList<Planeta> planetas) {

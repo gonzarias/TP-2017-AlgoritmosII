@@ -15,7 +15,7 @@ public class Planeta extends CuerpoEstelar{
 
     public Planeta(double distanciaAlSol, double velocidadAngular) {
         this.distanciaAlSol = distanciaAlSol;
-        this.velocidadAngular = Math.toRadians(velocidadAngular); // se debe multiplicar el valor que viene en nudos/dia a km/dia
+        this.velocidadAngular = Math.toRadians(velocidadAngular); //La velocidad angular está dada en grados por día
         this.posicion = new Posicion(0, distanciaAlSol);
     }
 
