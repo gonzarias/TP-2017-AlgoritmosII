@@ -1,6 +1,7 @@
 /**
  * Created by marti on 6/6/2017.
  */
+<<<<<<< HEAD
 
 
 public abstract class Condicion {
@@ -8,6 +9,10 @@ public abstract class Condicion {
     public abstract Clima verificarCondicion(int dia);
 
 
+=======
+public abstract class Condicion {
+    abstract public Clima evaluar(SistemaSolar sistemaSolar);
+>>>>>>> 385aabcfee546eca6e3c45d3773d810c848f64f2
 }
 
 class Lluvia extends Condicion {
