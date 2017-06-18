@@ -2,7 +2,7 @@ package condiciones;
 
 import clima.Clima;
 import clima.ClimaSeco;
-import com.FiguraSistema;
+import com.SistemaSolar;
 
 public class CondicionSequia extends Condicion {
 
@@ -17,8 +17,8 @@ public class CondicionSequia extends Condicion {
     }
 
     @Override
-    public Clima verificarCondicion(int dia, FiguraSistema figuraSistema) {
-        return new ClimaSeco(dia);
+    public Clima verificarCondicion(SistemaSolar sistemaSolar) {
+        return new ClimaSeco(sistemaSolar.getDiaTranscurrido());
     }
 
 

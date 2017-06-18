@@ -2,7 +2,7 @@ package condiciones;
 
 import clima.Clima;
 import clima.ClimaOptimo;
-import com.FiguraSistema;
+import com.SistemaSolar;
 
 public class CondicionOptima extends Condicion {
     public static CondicionOptima instance;
@@ -16,8 +16,8 @@ public class CondicionOptima extends Condicion {
     }
 
     @Override
-    public Clima verificarCondicion(int dia, FiguraSistema figuraSistema) {
-        return new ClimaOptimo(dia);
+    public Clima verificarCondicion(SistemaSolar sistemaSolar) {
+        return new ClimaOptimo(sistemaSolar.getDiaTranscurrido());
     }
 
 

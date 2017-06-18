@@ -2,7 +2,7 @@ package condiciones;
 
 import clima.Clima;
 import clima.ClimaLluvioso;
-import com.FiguraSistema;
+import com.SistemaSolar;
 
 public class CondicionLluvia extends Condicion {
 
@@ -19,7 +19,7 @@ public class CondicionLluvia extends Condicion {
 
 
     @Override
-    public Clima verificarCondicion(int dia, FiguraSistema figuraSistema) {
-        return new ClimaLluvioso(dia);
+    public Clima verificarCondicion(SistemaSolar sistemaSolar) {
+        return new ClimaLluvioso(sistemaSolar.getDiaTranscurrido());
     }
 }

@@ -13,6 +13,8 @@ public class SistemaSolar {
 
     public static SistemaSolar instance;
     private Sol sol;
+    FiguraSistema figuraSistema;
+    int diaTranscurrido;
 
     public boolean debug = false;
 
@@ -74,7 +76,7 @@ public class SistemaSolar {
 
         if (debug)  System.out.println(" Obtener clima.Clima Iniciado...");
 
-        for (i=0;i<dias;i++) {
+        for (i=1;i<dias;i++) {
 
 
            for (Planeta planeta : planetas) {
@@ -84,11 +86,13 @@ public class SistemaSolar {
 
             }
 
+            this.setDiaTranscurrido(i);
+
             if (debug)  System.out.println(" Transcurrido el dia " + i);
 
             // Se crea el Poligono para obtener la figura del Sistema
 
-            FiguraSistema figuraSistema = new FiguraSistema(planetas);
+            this.figuraSistema= new FiguraSistema(planetas);
 
             // Se verifican las condiciones
 
@@ -100,6 +104,14 @@ public class SistemaSolar {
 
         }
 
+    }
+
+    public int getDiaTranscurrido() {
+        return diaTranscurrido;
+    }
+
+    public void setDiaTranscurrido(int diaTranscurrido) {
+        this.diaTranscurrido = diaTranscurrido;
     }
 
 

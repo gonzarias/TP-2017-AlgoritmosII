@@ -6,7 +6,7 @@ import com.*;
 
 public abstract class Condicion {
 
-    public abstract Clima verificarCondicion(int dia, FiguraSistema figuraSistema);
+    public abstract Clima verificarCondicion(SistemaSolar sistemaSolar);
 }
 
 
