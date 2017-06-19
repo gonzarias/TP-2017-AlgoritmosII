@@ -1,8 +1,6 @@
 package com;
 
-/**
- * Created by marti on 6/6/2017.
- */
+
 public class Posicion {
     private double x;
     private double y;

@@ -5,41 +5,33 @@ import condiciones.*;
 
 import java.util.ArrayList;
 
-
-/**
- * Created by marti on 6/6/2017.
- */
 public class SistemaSolar {
-
-    public static SistemaSolar instance;
-    private Sol sol;
-    FiguraSistema figuraSistema;
-    int diaTranscurrido;
 
     public boolean debug = false;
 
+    public static SistemaSolar sistemaSolar;
+    private Sol sol;
     private ArrayList<Planeta> planetas;
     private ArrayList<Condicion> condiciones;
     private ArrayList<Clima> climas;
-    private ObservatorioClimatologico observatorioClimatologico = new ObservatorioClimatologico();
+    private ObservatorioClimatologico observatorioClimatologico;
 
 
-    public static SistemaSolar getInstance(){
-        if(instance == null){
-            instance = new SistemaSolar();
+    public static SistemaSolar crearSistemaSolar(){
+        if(sistemaSolar == null){
+            sistemaSolar = new SistemaSolar();
         }
-        return instance;
+        return sistemaSolar;
     }
 
 
     private SistemaSolar() {
         // Constructor utilizado para la carga inicial.
 
-        if (debug)  System.out.println(" Carga Inicial...");
-
         this.sol = new Sol();
         this.planetas = new ArrayList<Planeta>();
         this.condiciones = new ArrayList<Condicion>();
+        this.observatorioClimatologico = ObservatorioClimatologico.crearObservatorioClimatologico();
 
         Planeta alderaan = new Planeta(500,1);
         Planeta felucia = new Planeta(2000,3);
@@ -51,50 +43,51 @@ public class SistemaSolar {
 
         Condicion condicionSequia = new CondicionSequia();
         Condicion condicionLluvia = new CondicionLluvia();
-        Condicion condicionLluviaIntensa = new CondicionLluviaIntensa();
-        Condicion condicionOptima = new CondicionOptima();
-        Condicion condicionDesconocida = new CondicionDesconocida();
+        Condicion condicionPresionYTemperatura = new CondicionPresionYTemperatura();
 
         this.condiciones.add(condicionSequia);
         this.condiciones.add(condicionLluvia);
-        this.condiciones.add(condicionLluviaIntensa);
-        this.condiciones.add(condicionOptima);
-        this.condiciones.add(condicionDesconocida);
+        this.condiciones.add(condicionPresionYTemperatura);
     }
 
-    public void addPlanetas(ArrayList<Planeta> planetas) {
+    public void addPlaneta(ArrayList<Planeta> planetas) {
         this.planetas = planetas;
     }
 
-    public void addCondiciones(ArrayList<Condicion> condiciones) {
+    public ArrayList<Planeta> getPlanetas() {
+        return this.planetas;
+    }
+
+    public Sol getSol() {
+        return this.sol;
+    }
+
+    public void addCondicion(ArrayList<Condicion> condiciones) {
         this.condiciones = condiciones;
     }
 
 
-    public void obtenerClima (double dias){
-        int i;
+    public void transcurrirDias(double dias){
+        int diaActual;
+        Clima clima;
+        Dia dia;
 
-        if (debug)  System.out.println(" Obtener clima.Clima Iniciado...");
+        for (diaActual=1;diaActual<dias;diaActual++) {
+            //Crear dia a agregar en el Observatorio
+            dia = new Dia(diaActual);
 
-        for (i=1;i<dias;i++) {
-
-
-           for (Planeta planeta : planetas) {
-
-
-                planeta.transcurrirDias(dias);
-
+            for (Planeta planeta : this.planetas) {
+                planeta.transcurrirDia(diaActual);
             }
 
-            this.setDiaTranscurrido(i);
-
-            if (debug)  System.out.println(" Transcurrido el dia " + i);
-
-            // Se crea el Poligono para obtener la figura del Sistema
-
-            this.figuraSistema= new FiguraSistema(planetas);
-
+            if (debug)  System.out.println(" Transcurrido el dia " + diaActual);
             // Se verifican las condiciones
+            for (Condicion condicion : this.condiciones){
+                clima = condicion.evaluar(this);
+                dia.addClima(clima);
+            }
+
+            this.observatorioClimatologico.addDia(dia);
 
             
 
@@ -105,16 +98,6 @@ public class SistemaSolar {
         }
 
     }
-
-    public int getDiaTranscurrido() {
-        return diaTranscurrido;
-    }
-
-    public void setDiaTranscurrido(int diaTranscurrido) {
-        this.diaTranscurrido = diaTranscurrido;
-    }
-
-
 
 
 }

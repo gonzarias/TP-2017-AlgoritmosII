@@ -1,25 +1,16 @@
 package condiciones;
 
 import clima.Clima;
-import clima.ClimaSeco;
+import clima.ClimaDesconocido;
+import clima.Sequia;
 import com.SistemaSolar;
 
 public class CondicionSequia extends Condicion {
 
-    public static CondicionSequia instance;
-    Condicion siguiente = new CondicionLluviaIntensa();
-
-    public static CondicionSequia getInstance(){
-        if(instance == null){
-            instance = new CondicionSequia();
-        }
-        return instance;
-    }
-
+    /*Cuando los tres planetas están alineados entre sí y a su vez alineados con respecto al sol, el
+    sistema solar experimenta un período de sequía*/
     @Override
-    public Clima verificarCondicion(SistemaSolar sistemaSolar) {
-        return new ClimaSeco(sistemaSolar.getDiaTranscurrido());
+    public Clima evaluar(SistemaSolar sistemaSolar) {
+        return new Sequia();
     }
-
-
 }

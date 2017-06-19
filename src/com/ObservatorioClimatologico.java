@@ -1,18 +1,31 @@
 package com;
 
-/**
- * Created by Gonzalo Arias on 10/6/2017.
- */
-public class ObservatorioClimatologico {
-    public double diaMaslluvioso = 0;
-    public double cantidadDiasLluviosos = 0;
-    public double cantidadDiasSecos = 0;
-    public double cantidadDiasOptimos = 0;
-    public double cantidadDiasClimaDesconocido = 0;
+import java.util.HashMap;
 
-    public ObservatorioClimatologico() {
-        super();
+public class ObservatorioClimatologico {
+    public static ObservatorioClimatologico observatorioClimatologico;
+    private HashMap<Integer, Dia> estadisticaClimatologica;
+
+    public static ObservatorioClimatologico crearObservatorioClimatologico() {
+        if (observatorioClimatologico == null) {
+            observatorioClimatologico = new ObservatorioClimatologico();
+        }
+        return observatorioClimatologico;
     }
 
+    public ObservatorioClimatologico() {
+        this.estadisticaClimatologica = new HashMap<Integer, Dia>();
+    }
+
+    public void addDia(Dia dia) {
+        if (estadisticaClimatologica.containsKey(dia.getDia())) {
+            //Tirar exception
+        } else {
+            estadisticaClimatologica.put(dia.getDia(), dia);
+        }
+    }
 }
+
+
+
 

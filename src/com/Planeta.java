@@ -5,8 +5,8 @@ package com; /**
 import java.lang.Math;
 
 /**
- * Abstracción de un planeta del sistema solar.Se le puede pedir la posición (x, y) en base a el tiempo, la distancia respecto al sol y la velocidad angular.
- *
+ * Abstracción de un planeta del sistema solar.Se le puede pedir la posición (x, y) en base a el tiempo, la distancia
+ * respecto al sol y la velocidad angular.
  */
 public class Planeta extends CuerpoEstelar{
 
@@ -23,11 +23,10 @@ public class Planeta extends CuerpoEstelar{
         return this.posicion;
     }
 
-    public void transcurrirDias(double diasTranscurridos) {
+    public void transcurrirDia(double diaTranscurrido) {
 
-        System.out.println(" Transcurriendo el dia..." + diasTranscurridos);
-        double x = Math.cos(velocidadAngular * diasTranscurridos) * distanciaAlSol;
-        double y = Math.sin(velocidadAngular * diasTranscurridos) * distanciaAlSol;
+        double x = Math.cos(velocidadAngular * diaTranscurrido) * distanciaAlSol;
+        double y = Math.sin(velocidadAngular * diaTranscurrido) * distanciaAlSol;
 
         this.posicion = new Posicion(x,y);
     }

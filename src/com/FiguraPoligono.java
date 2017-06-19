@@ -5,12 +5,10 @@ import java.util.ArrayList;
 
 import static com.sun.jmx.mbeanserver.Util.cast;
 
-/**
- * Created by Gonzalo Arias on 10/6/2017.
- */
-public class FiguraSistema extends Polygon {
 
-    public FiguraSistema(ArrayList<Planeta> planetas){
+public class FiguraPoligono extends Polygon {
+
+    public FiguraPoligono(ArrayList<Planeta> planetas){
 
         int j = 0;
         int[] xPoints = new int[0], yPoints = new int[0];
@@ -23,5 +21,11 @@ public class FiguraSistema extends Polygon {
         }
         new Polygon(xPoints, yPoints, j);
     };
+
+    public boolean contiene(Sol sol) {
+        Posicion posicionSol = sol.getPosicion();
+
+        return this.contains(posicionSol.getX(),posicionSol.getY());
+    }
 
 }
