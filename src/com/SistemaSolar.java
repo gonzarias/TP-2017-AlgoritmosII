@@ -49,6 +49,13 @@ public class SistemaSolar {
         this.condiciones.add(condicionSequia);
         this.condiciones.add(condicionLluvia);
         this.condiciones.add(condicionPresionYTemperatura);
+
+        //Agrego interesado
+        Alertador i1 = new Interesado ("RepresentanteA");
+        Alertador i2 = new Interesado ("EstacionA");
+
+        condicionLluvia.subscribir (i1);
+        condicionLluvia.subscribir (i2);
     }
 
     public void addPlaneta(ArrayList<Planeta> planetas) {

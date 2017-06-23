@@ -3,6 +3,7 @@ package condiciones;
 import clima.Clima;
 import clima.ClimaDesconocido;
 import clima.Lluvia;
+import com.Alertador;
 import com.FiguraPoligono;
 import com.SistemaSolar;
 
@@ -18,10 +19,27 @@ public class CondicionLluvia extends Condicion {
         this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas());
         if (figuraPoligono.contiene(sistemaSolar.getSol())){
             System.out.println("Hoy llueve");
+            //Se notifica al usuario de la lluvia
+            notificar();
             return new Lluvia();
         } else {
             System.out.println("Hoy NO llueve");
             return new ClimaDesconocido();
         }
+    }
+
+    //Se implementa notificar
+    @Override
+    public void notificar ( ) {
+        for(Alertador alertador : alertados) {
+            alertador.informar(this);
+        }
+    }
+
+
+    @Override
+    //Subscriptor
+    public void subscribir(Alertador alertador){
+        this.alertados.add (alertador);
     }
 }
