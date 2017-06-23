@@ -1,6 +1,5 @@
 package com;
 
-import condiciones.Condicion;
 import condiciones.CondicionLluvia;
 import condiciones.CondicionPresionYTemperatura;
 import condiciones.CondicionSequia;
