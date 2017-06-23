@@ -44,7 +44,7 @@ public class FiguraPoligono{
 
         int i = 0;
         double d = 0;
-        double total = 0;
+        double total = points.get(0).distance(points.get(points.size() - 1));
 
         while (i < points.size() - 1 )
         {
