@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import static com.sun.jmx.mbeanserver.Util.cast;
 
 
-public class FiguraPoligono extends Polygon {
+public class FiguraPoligono{
+    private Polygon poligono;
 
     public FiguraPoligono(ArrayList<Planeta> planetas){
         int i = planetas.size();
@@ -20,16 +21,16 @@ public class FiguraPoligono extends Polygon {
 
 
             xPoints[j] = x;
-            xPoints[j] = y;
+            yPoints[j] = y;
             j++;
         }
-        new Polygon(xPoints, yPoints, j);
+        this.poligono = new Polygon(xPoints, yPoints, j);
     };
 
     public boolean contiene(Sol sol) {
         Posicion posicionSol = sol.getPosicion();
 
-        return this.contains(posicionSol.getX(),posicionSol.getY());
+        return this.poligono.contains(posicionSol.getX(),posicionSol.getY());
     }
 
 }
