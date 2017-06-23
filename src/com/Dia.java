@@ -15,14 +15,14 @@ public class Dia {
     }
 
     public void addClima(Clima clima){
-        this.climas.add(clima);
-    }
-
-    public void addClima(ClimaDesconocido climaDesconocido){
-        //No se agrega
+        clima.agregarEnDia(this);
     }
 
     public Integer getDia() {
         return numeroDia;
+    }
+
+    public ArrayList<Clima> getClimas() {
+        return climas;
     }
 }

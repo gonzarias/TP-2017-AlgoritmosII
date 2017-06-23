@@ -17,8 +17,10 @@ public class CondicionLluvia extends Condicion {
         // Se crea el Poligono para obtener la figura del Sistema
         this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas());
         if (figuraPoligono.contiene(sistemaSolar.getSol())){
+            System.out.println("Hoy llueve");
             return new Lluvia();
         } else {
+            System.out.println("Hoy NO llueve");
             return new ClimaDesconocido();
         }
     }

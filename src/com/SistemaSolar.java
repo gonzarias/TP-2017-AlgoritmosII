@@ -1,6 +1,7 @@
 package com;
 
 import clima.Clima;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import condiciones.*;
 
 import java.util.ArrayList;
@@ -69,15 +70,19 @@ public class SistemaSolar {
 
     public void transcurrirDias(double dias){
         int diaActual;
+        int p;
         Clima clima;
         Dia dia;
 
-        for (diaActual=1;diaActual<dias;diaActual++) {
+        for (diaActual=1;diaActual<=dias;diaActual++) {
             //Crear dia a agregar en el Observatorio
             dia = new Dia(diaActual);
 
+            p = 1;
             for (Planeta planeta : this.planetas) {
+                System.out.print("Posicion planeta " + p + ": ");
                 planeta.transcurrirDia(diaActual);
+                p++;
             }
 
             if (debug)  System.out.println(" Transcurrido el dia " + diaActual);
@@ -88,14 +93,9 @@ public class SistemaSolar {
             }
 
             this.observatorioClimatologico.addDia(dia);
-
-            
-
-
-
-
-
         }
+
+        this.observatorioClimatologico.obetenerEstadistica(dias);
 
     }
 

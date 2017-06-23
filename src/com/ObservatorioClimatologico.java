@@ -1,10 +1,13 @@
 package com;
 
+import clima.Clima;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ObservatorioClimatologico {
     public static ObservatorioClimatologico observatorioClimatologico;
-    private HashMap<Integer, Dia> estadisticaClimatologica;
+    private HashMap<Integer, Dia> calendarioClimatologico;
 
     public static ObservatorioClimatologico crearObservatorioClimatologico() {
         if (observatorioClimatologico == null) {
@@ -14,14 +17,29 @@ public class ObservatorioClimatologico {
     }
 
     public ObservatorioClimatologico() {
-        this.estadisticaClimatologica = new HashMap<Integer, Dia>();
+        this.calendarioClimatologico = new HashMap<Integer, Dia>();
     }
 
     public void addDia(Dia dia) {
-        if (estadisticaClimatologica.containsKey(dia.getDia())) {
+        if (calendarioClimatologico.containsKey(dia.getDia())) {
             //Tirar exception
         } else {
-            estadisticaClimatologica.put(dia.getDia(), dia);
+            calendarioClimatologico.put(dia.getDia(), dia);
+        }
+    }
+
+
+    public void obetenerEstadistica(double dias) {
+        int diaActual;
+        Dia dia;
+        ArrayList<Clima> climas;
+
+        for (diaActual=1; diaActual<dias; diaActual++){
+            dia = this.calendarioClimatologico.get(diaActual);
+            climas = dia.getClimas();
+            for (Clima clima : climas){
+
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ public class Planeta extends CuerpoEstelar{
     public Planeta(double distanciaAlSol, double velocidadAngular) {
         this.distanciaAlSol = distanciaAlSol;
         this.velocidadAngular = Math.toRadians(velocidadAngular); //La velocidad angular está dada en grados por día
-        this.posicion = new Posicion(0, distanciaAlSol);
+        this.posicion = new Posicion(distanciaAlSol, 0);
     }
 
     public Posicion obtenerPosicion() {
@@ -25,9 +25,9 @@ public class Planeta extends CuerpoEstelar{
 
     public void transcurrirDia(double diaTranscurrido) {
 
-        double x = Math.cos(velocidadAngular * diaTranscurrido) * distanciaAlSol;
-        double y = Math.sin(velocidadAngular * diaTranscurrido) * distanciaAlSol;
-
+        double x = Math.round(Math.cos(velocidadAngular * diaTranscurrido) * distanciaAlSol);
+        double y = Math.round(Math.sin(velocidadAngular * diaTranscurrido) * distanciaAlSol);
+        System.out.println("x: " + x + ". y: " + y);
         this.posicion = new Posicion(x,y);
     }
 
