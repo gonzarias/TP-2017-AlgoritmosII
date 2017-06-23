@@ -1,6 +1,5 @@
 package com;
 
-import condiciones.Condicion;
 import condiciones.CondicionLluvia;
 import condiciones.CondicionPresionYTemperatura;
 import condiciones.CondicionSequia;
@@ -17,18 +16,18 @@ public class Interesado implements Alertador{
 
     @Override
     public void informar (CondicionLluvia condicionLluvia) {
-        System.out.println ("Estimado: " +interesado + "El clima está con Lluvia");
+        System.out.println ("Estimado: " +interesado + ". El clima está con Lluvia");
     }
 
     @Override
     public void informar (CondicionPresionYTemperatura condicionPresionYTemperatura) {
-        System.out.println ("Estimado: " +interesado + "El clima está con Optimas condiciones de Presion y Temperatura");
+        System.out.println ("Estimado: " +interesado + ". El clima está con Optimas condiciones de Presion y Temperatura");
 
     }
 
     @Override
     public void informar (CondicionSequia condicionSequia) {
-        System.out.println ("Estimado: " +interesado + "El clima presenta una condición de Sequía");
+        System.out.println ("Estimado: " +interesado + ". El clima presenta una condición de Sequía");
 
     }
 
