@@ -6,45 +6,37 @@ public class Main {
     public static void main(String[] args) {
 
         // Creamos una sola instancia del Sistema, se crea con la carga incial.
-        //SistemaSolar sistemaSolar =  SistemaSolar.crearSistemaSolar();
+        SistemaSolar sistemaSolar =  SistemaSolar.crearSistemaSolar();
 
 
-        //sistemaSolar.debug = true;
-        //sistemaSolar.transcurrirDias(360);
+        sistemaSolar.debug = true;
+        sistemaSolar.transcurrirDias(360);
 
 
         /* Agregar planetas y condiciones */
 
-        /* Prueba del poligono */
 
-
+        /* Codigo utilizado para probar el poligono
         int[] xPts , yPts;
 
-        xPts = new int[4];
-        yPts = new int[4];
+        xPts = new int[3];
+        yPts = new int[3];
 
-        xPts[0] = 0;
-        yPts[0] = 0;
+        xPts[0] = -5;
+        yPts[0] = 2;
 
-        xPts[1] = 1;
-        yPts[1] = 4;
+        xPts[1] = 5;
+        yPts[1] = 2;
 
-        xPts[2] = 5;
-        yPts[2] = 4;
+        xPts[2] = 1;
+        yPts[2] = 2;
 
-        xPts[3] = 4;
-        yPts[3] = 0;
-/*
-        xPts[4] = -4;
-        yPts[4] = -8;
+        FiguraPoligono figuraPoligono = new FiguraPoligono(xPts, yPts, 3);
 
-        xPts[5] = -4;
-        yPts[5] = 6;*/
-
-        FiguraPoligono figuraPoligono = new FiguraPoligono(xPts, yPts, 4);
-
+        System.out.println(figuraPoligono.poligono.contains(0,1.2));
         System.out.println("El àrea del poligono es: " + figuraPoligono.getArea());
+        System.out.println("El àrea del poligono con el SOL es: " + figuraPoligono.getAreaConSol());
         System.out.println("El perimetro del poligono es: " + figuraPoligono.getPerimetro());
-
+        */
     }
 }

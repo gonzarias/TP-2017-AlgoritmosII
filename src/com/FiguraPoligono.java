@@ -6,12 +6,14 @@ import java.util.ArrayList;
 
 
 public class FiguraPoligono{
-    private Polygon poligono;
+    public Polygon poligono;
     private ArrayList<Point2D.Double> points;
     private double area;
+    private double areaConSol;
     private double perimetro;
 
-    public FiguraPoligono(ArrayList<Planeta> planetas){
+    public FiguraPoligono(ArrayList<Planeta> planetas, Sol sol){
+
         int i = planetas.size();
         int j = 0;
         int[] xPoints = new int[i];
@@ -28,9 +30,11 @@ public class FiguraPoligono{
             yPoints[j] = y;
             j++;
         }
-        this.poligono = new Polygon(xPoints, yPoints, j);
-        this.area(xPoints, yPoints, j);
 
+
+        this.poligono = new Polygon(xPoints, yPoints, j);
+        this.area = this.area(xPoints, yPoints, j);
+        this.areaConSol = this.area(xPoints, yPoints, j, sol);
     };
 
     public boolean contiene(Sol sol) {
@@ -76,7 +80,7 @@ public class FiguraPoligono{
 
     }
 
-    private void area(int[] X, int[] Y, int numPoints)
+    private double area(int[] X, int[] Y, int numPoints)
     {
         int j,i;
         double area = 0.;
@@ -87,16 +91,40 @@ public class FiguraPoligono{
         { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]);
             j = i;
         }
-        this.area = area/2;
+        return area/2;
     }
+
+    private double area(int[] X, int[] Y, int numPoints, Sol sol)
+    {
+        int i;
+        int[] xPoints = new int[numPoints+1];
+        int[] yPoints = new int[numPoints+1];
+
+        for (i=0;i<numPoints;i++){
+            xPoints[i] = X[i];
+            yPoints[i] = Y[i];
+        }
+        xPoints[i] = (int)sol.getPosicion().getX();
+        yPoints[i] = (int)sol.getPosicion().getY();
+
+        return this.area(xPoints, yPoints, numPoints+1);
+
+    }
+
 
     public double getArea() {
         return area;
     }
 
+    public double getAreaConSol() {
+        return areaConSol;
+    }
+
     public double getPerimetro() {
         return perimetro;
     }
+
+/*
 
     public FiguraPoligono(int[] xPoints, int[] yPoints, int j){
         int i ;
@@ -110,8 +138,9 @@ public class FiguraPoligono{
 
         this.poligono = new Polygon(xPoints, yPoints, j);
         this.perimetro();
-        this.area(xPoints, yPoints, j);
+        this.area = this.area(xPoints, yPoints, j);
+        this.areaConSol = this.area(xPoints, yPoints, j, new Sol());
 
-    };
+    };*/
 
 }

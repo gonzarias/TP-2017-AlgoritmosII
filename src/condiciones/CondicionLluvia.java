@@ -16,12 +16,13 @@ public class CondicionLluvia extends Condicion {
     @Override
     public Clima evaluar(SistemaSolar sistemaSolar) {
         // Se crea el Poligono para obtener la figura del Sistema
-        this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas());
+        this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas(), sistemaSolar.getSol());
+
         if (figuraPoligono.contiene(sistemaSolar.getSol())){
             System.out.println("Hoy llueve");
             //Se notifica al usuario de la lluvia
             notificar();
-            return new Lluvia();
+            return new Lluvia(figuraPoligono.getPerimetro());
         } else {
             System.out.println("Hoy NO llueve");
             return new ClimaDesconocido();
