@@ -48,9 +48,14 @@ public class FiguraPoligono{
 
         int i = 0;
         double d = 0;
-        double total = 0; // points.get(0).distance(points.get(points.size() - 1));
+        double total = 0;
 
-        while (i < points.size() - 1 )
+        // Guarda la distancia entre el primer y ultimo punto.
+        total =  points.get(0).distance(points.get(points.size() - 1));
+
+        //System.out.println(total);
+
+        while (i < points.size()-1)
         {
             Point2D.Double point1 = points.get(i);
             double x = point1.x;
@@ -61,8 +66,8 @@ public class FiguraPoligono{
             double y1 = point2.y;
 
             d = point1.distance(point2);
-            System.out.println(d);
-            //d = Math.sqrt(Math.pow(x1 - x,2) + Math.pow(y1 - y, 2));
+//            System.out.println(d);
+
             total = total + d;
             i++;
 
@@ -76,11 +81,11 @@ public class FiguraPoligono{
         int j,i;
         double area = 0.;
 
-        j = numPoints-1;  // The last vertex is the 'previous' one to the first
+        j = numPoints-1;
 
         for (i=0; i<numPoints; i++)
         { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]);
-            j = i;  //j is previous vertex to i
+            j = i;
         }
         this.area = area/2;
     }
