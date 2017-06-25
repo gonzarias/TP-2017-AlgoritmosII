@@ -1,4 +1,4 @@
-import com.FiguraPoligono;
+
 import com.SistemaSolar;
 
 
@@ -10,7 +10,7 @@ public class Main {
 
 
         sistemaSolar.debug = true;
-        sistemaSolar.transcurrirDias(360);
+        sistemaSolar.transcurrirDias(365);
 
 
         /* Agregar planetas y condiciones */

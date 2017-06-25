@@ -18,16 +18,18 @@ public class FiguraPoligono{
         int j = 0;
         int[] xPoints = new int[i];
         int[] yPoints = new int[i];
+        this.points = new ArrayList<Point2D.Double>();
 
         for (Planeta planeta : planetas) {
             int x = (int)planeta.posicion.getX();
             int y = (int)planeta.posicion.getY();
 
-            // Agregado para calcular perimetro
-            points.add(new Point2D.Double(x,y));
-
             xPoints[j] = x;
             yPoints[j] = y;
+
+            // Agregado para calcular perimetro
+            Point2D.Double point = new Point2D.Double(x,y);
+            points.add(point);
             j++;
         }
 
@@ -125,7 +127,7 @@ public class FiguraPoligono{
     }
 
 /*
-
+    // Codigo utilizado para probar el poligono
     public FiguraPoligono(int[] xPoints, int[] yPoints, int j){
         int i ;
         this.points = new ArrayList<Point2D.Double>();

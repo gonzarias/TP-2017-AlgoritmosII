@@ -13,18 +13,19 @@ public class CondicionLluvia extends Condicion {
     /*Es sabido que en el momento en el que el sol se encuentra dentro del triángulo, el sistema solar
     experimenta unperíodo de lluvia, teniendo éste, un pico de intensidad cuando el perímetro del
     triángulo está en su máximo*/
+
     @Override
     public Clima evaluar(SistemaSolar sistemaSolar) {
         // Se crea el Poligono para obtener la figura del Sistema
         this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas(), sistemaSolar.getSol());
 
         if (figuraPoligono.contiene(sistemaSolar.getSol())){
-            System.out.println("Hoy llueve");
+            System.out.println("Hoy tenemos condicion de lluvia");
             //Se notifica al usuario de la lluvia
             notificar();
             return new Lluvia(figuraPoligono.getPerimetro());
         } else {
-            System.out.println("Hoy NO llueve");
+            System.out.println("Clima desconocido");
             return new ClimaDesconocido();
         }
     }

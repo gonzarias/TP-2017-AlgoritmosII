@@ -51,10 +51,11 @@ public class SistemaSolar {
         this.condiciones.add(condicionPresionYTemperatura);
 
         //Agrego interesado
-        Alertador i1 = new Interesado ("RepresentanteA");
-        Alertador i2 = new Interesado ("EstacionA");
+        Alertador i1 = new Interesado ("Representante Alderan");
+        Alertador i2 = new Interesado ("Estacion Alderan");
 
         condicionLluvia.subscribir (i1);
+        condicionPresionYTemperatura.subscribir(i1);
         condicionLluvia.subscribir (i2);
     }
 
