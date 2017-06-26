@@ -16,6 +16,7 @@ public class SistemaSolar {
     private ArrayList<Condicion> condiciones;
     private ArrayList<Clima> climas;
     private ObservatorioClimatologico observatorioClimatologico;
+    private double diasTranscurridos;
 
 
     public static SistemaSolar crearSistemaSolar(){
@@ -52,11 +53,12 @@ public class SistemaSolar {
 
         //Agrego interesado
         Alertador i1 = new Interesado ("Representante Alderan");
-        Alertador i2 = new Interesado ("Estacion Alderan");
+        Alertador i2 = new Interesado ("Representante Felucia");
 
         condicionLluvia.subscribir (i1);
         condicionPresionYTemperatura.subscribir(i1);
-        condicionLluvia.subscribir (i2);
+        condicionSequia.subscribir(i1);
+
     }
 
     public void addPlaneta(ArrayList<Planeta> planetas) {
@@ -88,7 +90,7 @@ public class SistemaSolar {
 
             p = 1;
             for (Planeta planeta : this.planetas) {
-                System.out.print("Posicion planeta " + p + ": ");
+                if (debug) System.out.print("Posicion planeta " + p + ": ");
                 planeta.transcurrirDia(diaActual);
                 p++;
             }
@@ -102,9 +104,20 @@ public class SistemaSolar {
 
             this.observatorioClimatologico.addDia(dia);
         }
+        this.diasTranscurridos = dias;
 
-        this.observatorioClimatologico.obetenerEstadistica(dias);
+    }
 
+    public void obtenerEstadisticas() {
+
+        this.observatorioClimatologico.obetenerEstadistica(this.diasTranscurridos);
+
+        System.out.println("--------------Informe Climatologico-----------------");
+        System.out.format( "-Dias transcurridos ------             %1$8.0f ----%n",this.diasTranscurridos );
+        System.out.format( "---LLuvia                              %1$8.0f ----%n",observatorioClimatologico.getDiasLluvia() );
+        System.out.format( "---Sequia                              %1$8.0f ----%n",observatorioClimatologico.getDiasSequia() );
+        System.out.format( "---Optima Presion y Temperatura        %1$8.0f ----%n",observatorioClimatologico.getDiasOptimaPresionYtemperatura() );
+        System.out.println("----------------------------------------------------");
     }
 
 

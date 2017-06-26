@@ -18,12 +18,12 @@ public class CondicionSequia extends Condicion {
         this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas(), sistemaSolar.getSol());
 
         if (figuraPoligono.getAreaConSol() == 0) {
-            System.out.println("Hoy tenemos condiciones de Sequia");
+            //System.out.println("Hoy tenemos condiciones de Sequia");
 
             notificar();
             return new Sequia();
         } else {
-            System.out.println("Clima Desconocido");
+            //System.out.println("Clima Desconocido");
             return new ClimaDesconocido();
         }
 

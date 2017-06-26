@@ -20,12 +20,12 @@ public class CondicionPresionYTemperatura extends Condicion {
 
         if (figuraPoligono.getArea() == 0
                     && figuraPoligono.getAreaConSol() != 0) {
-            System.out.println("Hoy tenemos Optimas Condiciones de Presiòn y Temperatura");
+            //System.out.println("Hoy tenemos Optimas Condiciones de Presiòn y Temperatura");
 
             notificar();
             return new OptimaPresionYTemperatura();
         } else {
-            System.out.println("Clima Desconocido");
+            //System.out.println("Clima Desconocido");
             return new ClimaDesconocido();
         }
     }

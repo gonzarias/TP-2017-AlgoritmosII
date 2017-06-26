@@ -126,23 +126,6 @@ public class FiguraPoligono{
         return perimetro;
     }
 
-/*
-    // Codigo utilizado para probar el poligono
-    public FiguraPoligono(int[] xPoints, int[] yPoints, int j){
-        int i ;
-        this.points = new ArrayList<Point2D.Double>();
 
-        for (i=0; i<j; i++){
-            Point2D.Double point = new Point2D.Double(xPoints[i],yPoints[i]);
-
-            points.add(point);
-        }
-
-        this.poligono = new Polygon(xPoints, yPoints, j);
-        this.perimetro();
-        this.area = this.area(xPoints, yPoints, j);
-        this.areaConSol = this.area(xPoints, yPoints, j, new Sol());
-
-    };*/
 
 }

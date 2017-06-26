@@ -8,6 +8,9 @@ import java.util.HashMap;
 public class ObservatorioClimatologico {
     public static ObservatorioClimatologico observatorioClimatologico;
     private HashMap<Integer, Dia> calendarioClimatologico;
+    private double diasLluvia = 0;
+    private double diasSequia = 0;
+    private double diasOptimaPresionYtemperatura = 0;
 
     public static ObservatorioClimatologico crearObservatorioClimatologico() {
         if (observatorioClimatologico == null) {
@@ -39,8 +42,34 @@ public class ObservatorioClimatologico {
             climas = dia.getClimas();
             for (Clima clima : climas){
 
+                clima.addEstadistica(this);
+
             }
         }
+    }
+
+    public void addDiasLluvia (){
+        this.diasLluvia ++;
+    }
+
+    public void addOptimaPresionYTemperatura (){
+        this.diasOptimaPresionYtemperatura ++;
+    }
+
+    public void addDiasSequia (){
+        this.diasSequia ++;
+    }
+
+    public double getDiasLluvia() {
+        return diasLluvia;
+    }
+
+    public double getDiasSequia() {
+        return diasSequia;
+    }
+
+    public double getDiasOptimaPresionYtemperatura() {
+        return diasOptimaPresionYtemperatura;
     }
 }
 

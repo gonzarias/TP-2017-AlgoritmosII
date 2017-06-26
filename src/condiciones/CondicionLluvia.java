@@ -20,12 +20,12 @@ public class CondicionLluvia extends Condicion {
         this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas(), sistemaSolar.getSol());
 
         if (figuraPoligono.contiene(sistemaSolar.getSol())){
-            System.out.println("Hoy tenemos condicion de lluvia");
+            //System.out.println("Hoy tenemos condicion de lluvia");
             //Se notifica al usuario de la lluvia
             notificar();
             return new Lluvia(figuraPoligono.getPerimetro());
         } else {
-            System.out.println("Clima desconocido");
+            //System.out.println("Clima desconocido");
             return new ClimaDesconocido();
         }
     }

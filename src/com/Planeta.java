@@ -27,7 +27,7 @@ public class Planeta extends CuerpoEstelar{
 
         double x = Math.round(Math.cos(velocidadAngular * diaTranscurrido) * distanciaAlSol);
         double y = Math.round(Math.sin(velocidadAngular * diaTranscurrido) * distanciaAlSol);
-        System.out.println("x: " + x + ". y: " + y);
+        //System.out.println("x: " + x + ". y: " + y);
         this.posicion = new Posicion(x,y);
     }
 
