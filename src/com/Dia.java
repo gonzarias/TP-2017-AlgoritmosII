@@ -6,7 +6,7 @@ import clima.ClimaDesconocido;
 import java.util.ArrayList;
 
 public class Dia {
-    int numeroDia;
+    double numeroDia;
     ArrayList<Clima> climas;
 
     public Dia(int numeroDia){
@@ -18,7 +18,7 @@ public class Dia {
         clima.agregarEnDia(this);
     }
 
-    public Integer getDia() {
+    public Double getDia() {
         return numeroDia;
     }
 

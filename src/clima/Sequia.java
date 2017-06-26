@@ -9,7 +9,7 @@ public class Sequia extends Clima {
         dia.getClimas().add(this);
     }
 
-    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico){
+    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico, Dia diaActual){
         observatorioClimatologico.addDiasSequia();
     }
 }

@@ -4,6 +4,8 @@ import com.Dia;
 import com.ObservatorioClimatologico;
 
 public class Lluvia extends Clima {
+
+
     private double perimetro;
 
     public Lluvia(double perimetro) {
@@ -15,8 +17,16 @@ public class Lluvia extends Clima {
         dia.getClimas().add(this);
     }
 
-    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico){
+    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico, Dia diaActual){
         observatorioClimatologico.addDiasLluvia();
+        observatorioClimatologico.verDiaMaxLluvia(this, diaActual);
     }
+
+    public double getPerimetro() {
+        return perimetro;
+    }
+
+
+
 }
 

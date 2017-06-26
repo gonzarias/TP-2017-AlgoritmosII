@@ -10,7 +10,7 @@ public class ClimaDesconocido extends Clima {
     }
 
     @Override
-    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico) {
+    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico, Dia diaActual) {
 
     }
 }

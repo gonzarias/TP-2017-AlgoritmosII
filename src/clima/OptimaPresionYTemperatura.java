@@ -10,7 +10,7 @@ public class OptimaPresionYTemperatura extends Clima {
         dia.getClimas().add(this);
     }
 
-    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico){
+    public void addEstadistica(ObservatorioClimatologico observatorioClimatologico, Dia diaActual){
         observatorioClimatologico.addOptimaPresionYTemperatura();
     }
 }

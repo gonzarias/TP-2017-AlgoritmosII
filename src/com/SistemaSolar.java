@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 public class SistemaSolar {
 
-    public boolean debug = false;
-
-    public static SistemaSolar sistemaSolar;
     private Sol sol;
     private ArrayList<Planeta> planetas;
     private ArrayList<Condicion> condiciones;
@@ -19,15 +16,7 @@ public class SistemaSolar {
     private double diasTranscurridos;
 
 
-    public static SistemaSolar crearSistemaSolar(){
-        if(sistemaSolar == null){
-            sistemaSolar = new SistemaSolar();
-        }
-        return sistemaSolar;
-    }
-
-
-    private SistemaSolar() {
+    public SistemaSolar(Boolean alertas) {
         // Constructor utilizado para la carga inicial.
 
         this.sol = new Sol();
@@ -52,8 +41,8 @@ public class SistemaSolar {
         this.condiciones.add(condicionPresionYTemperatura);
 
         //Agrego interesado
-        Alertador i1 = new Interesado ("Representante Alderan");
-        Alertador i2 = new Interesado ("Representante Felucia");
+        Alertador i1 = new Interesado ("Representante Alderan", alertas);
+        Alertador i2 = new Interesado ("Representante Felucia", alertas);
 
         condicionLluvia.subscribir (i1);
         condicionPresionYTemperatura.subscribir(i1);
@@ -61,8 +50,8 @@ public class SistemaSolar {
 
     }
 
-    public void addPlaneta(ArrayList<Planeta> planetas) {
-        this.planetas = planetas;
+    public void addPlaneta(Planeta planeta) {
+        this.planetas.add(planeta) ;
     }
 
     public ArrayList<Planeta> getPlanetas() {
@@ -90,12 +79,12 @@ public class SistemaSolar {
 
             p = 1;
             for (Planeta planeta : this.planetas) {
-                if (debug) System.out.print("Posicion planeta " + p + ": ");
+                //if (debug) System.out.print("Posicion planeta " + p + ": ");
                 planeta.transcurrirDia(diaActual);
                 p++;
             }
 
-            if (debug)  System.out.println(" Transcurrido el dia " + diaActual);
+            //if (debug)  System.out.println(" Transcurrido el dia " + diaActual);
             // Se verifican las condiciones
             for (Condicion condicion : this.condiciones){
                 clima = condicion.evaluar(this);
@@ -115,6 +104,7 @@ public class SistemaSolar {
         System.out.println("--------------Informe Climatologico-----------------");
         System.out.format( "-Dias transcurridos ------             %1$8.0f ----%n",this.diasTranscurridos );
         System.out.format( "---LLuvia                              %1$8.0f ----%n",observatorioClimatologico.getDiasLluvia() );
+        System.out.format( "------Dia Pico                         %1$8.0f ----%n",observatorioClimatologico.getDiaMaxLluvia().getDia());
         System.out.format( "---Sequia                              %1$8.0f ----%n",observatorioClimatologico.getDiasSequia() );
         System.out.format( "---Optima Presion y Temperatura        %1$8.0f ----%n",observatorioClimatologico.getDiasOptimaPresionYtemperatura() );
         System.out.println("----------------------------------------------------");

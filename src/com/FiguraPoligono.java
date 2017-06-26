@@ -1,12 +1,13 @@
 package com;
 
 import java.awt.*;
+import java.awt.geom.Path2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 
 public class FiguraPoligono{
-    public Polygon poligono;
+    public Path2D poligono;
     private ArrayList<Point2D.Double> points;
     private double area;
     private double areaConSol;
@@ -16,36 +17,45 @@ public class FiguraPoligono{
 
         int i = planetas.size();
         int j = 0;
-        int[] xPoints = new int[i];
-        int[] yPoints = new int[i];
+        int k;
+
+        double[] xPoints = new double[i];
+        double[] yPoints = new double[i];
         this.points = new ArrayList<Point2D.Double>();
+        this.poligono = new Path2D.Double();
+
 
         for (Planeta planeta : planetas) {
-            int x = (int)planeta.posicion.getX();
-            int y = (int)planeta.posicion.getY();
-
+            double x = planeta.posicion.getX();
+            double y = planeta.posicion.getY();
             xPoints[j] = x;
             yPoints[j] = y;
-
-            // Agregado para calcular perimetro
             Point2D.Double point = new Point2D.Double(x,y);
             points.add(point);
             j++;
         }
 
+        poligono.moveTo(xPoints[0], yPoints[0]);
 
-        this.poligono = new Polygon(xPoints, yPoints, j);
+        for(k = 1; k < xPoints.length; ++k) {
+            poligono.lineTo(xPoints[k], yPoints[k]);
+        }
+        poligono.closePath();
+
+        this.perimetro = this.perimetro();
         this.area = this.area(xPoints, yPoints, j);
         this.areaConSol = this.area(xPoints, yPoints, j, sol);
+
     };
 
     public boolean contiene(Sol sol) {
         Posicion posicionSol = sol.getPosicion();
 
+
         return this.poligono.contains(posicionSol.getX(),posicionSol.getY());
     }
 
-    private void perimetro() {
+    private double perimetro() {
 
 
         if (points.size() < 2){
@@ -78,11 +88,11 @@ public class FiguraPoligono{
             i++;
 
         }
-        this.perimetro = total;
+        return  total;
 
     }
 
-    private double area(int[] X, int[] Y, int numPoints)
+    private double area(double[] X, double[] Y, int numPoints)
     {
         int j,i;
         double area = 0.;
@@ -96,11 +106,11 @@ public class FiguraPoligono{
         return area/2;
     }
 
-    private double area(int[] X, int[] Y, int numPoints, Sol sol)
+    private double area(double[] X, double[] Y, int numPoints, Sol sol)
     {
         int i;
-        int[] xPoints = new int[numPoints+1];
-        int[] yPoints = new int[numPoints+1];
+        double[] xPoints = new double[numPoints+1];
+        double[] yPoints = new double[numPoints+1];
 
         for (i=0;i<numPoints;i++){
             xPoints[i] = X[i];
@@ -125,6 +135,8 @@ public class FiguraPoligono{
     public double getPerimetro() {
         return perimetro;
     }
+
+
 
 
 

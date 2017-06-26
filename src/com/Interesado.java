@@ -8,26 +8,30 @@ import condiciones.CondicionSequia;
  * Created by polino on 2017-06-23.
  */
 public class Interesado implements Alertador{
-    String interesado;
+    private String interesado;
 
-    public Interesado (String interesado) {
+      private Boolean printAlarm = false;
+
+    public Interesado (String interesado, Boolean printAlarm) {
         this.interesado = interesado;
+        this.printAlarm = printAlarm;
     }
 
     @Override
     public void informar (CondicionLluvia condicionLluvia) {
-        System.out.println ("Estimado: " +interesado + ". El clima está con Lluvia");
+
+        if (printAlarm) System.out.println ("Estimado: " +interesado + ". El clima está con Lluvia");
     }
 
     @Override
     public void informar (CondicionPresionYTemperatura condicionPresionYTemperatura) {
-        System.out.println ("Estimado: " +interesado + ". El clima está con Optimas condiciones de Presion y Temperatura");
+        if (printAlarm) System.out.println ("Estimado: " +interesado + ". El clima está con Optimas condiciones de Presion y Temperatura");
 
     }
 
     @Override
     public void informar (CondicionSequia condicionSequia) {
-        System.out.println ("Estimado: " +interesado + ". El clima presenta una condición de Sequía");
+        if (printAlarm) System.out.println ("Estimado: " +interesado + ". El clima presenta una condición de Sequía");
 
     }
 
