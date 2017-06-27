@@ -1,4 +1,5 @@
 
+import com.FiguraPoligono;
 import com.Planeta;
 import com.SistemaSolar;
 
@@ -18,6 +19,32 @@ public class Main {
 
 
         /* Agregar planetas y condiciones */
+
+        //Prueba posicional del poligono
+        /*
+        double[] X = new double[3];
+        double[] Y = new double[3];
+
+        X[0] = 2;
+        Y[0] = 1;
+
+        X[1] = 3;
+        Y[1] = 2;
+
+        X[2] = 4;
+        Y[2] = 3;
+
+        FiguraPoligono figuraPoligono = new FiguraPoligono(X,Y, X.length);
+
+        System.out.println("Area: " + figuraPoligono.getArea());
+        System.out.println("Area con Sol: " + figuraPoligono.getAreaConSol());
+        System.out.println("Perimetro: " + figuraPoligono.getArea());
+        */
+
+
+
+
+
 
 
 

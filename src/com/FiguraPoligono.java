@@ -112,12 +112,14 @@ public class FiguraPoligono{
         double[] xPoints = new double[numPoints+1];
         double[] yPoints = new double[numPoints+1];
 
+        xPoints[0] = sol.getPosicion().getX();
+        yPoints[0] = sol.getPosicion().getY();
+
         for (i=0;i<numPoints;i++){
-            xPoints[i] = X[i];
-            yPoints[i] = Y[i];
+            xPoints[i+1] = X[i];
+            yPoints[i+1] = Y[i];
         }
-        xPoints[i] = (int)sol.getPosicion().getX();
-        yPoints[i] = (int)sol.getPosicion().getY();
+
 
         return this.area(xPoints, yPoints, numPoints+1);
 
@@ -135,6 +137,36 @@ public class FiguraPoligono{
     public double getPerimetro() {
         return perimetro;
     }
+
+    /*
+    // Sobrecarga para prueba posicional
+    public FiguraPoligono(double[] X, double [] Y, int j){
+        int k;
+        this.poligono = new Path2D.Double();
+        this.points = new ArrayList<Point2D.Double>();
+
+        poligono.moveTo(X[0], Y[0]);
+
+        Point2D.Double point = new Point2D.Double(X[0], Y[0]);
+        points.add(point);
+
+        for(k = 1; k < X.length; ++k) {
+            poligono.lineTo(X[k], Y[k]);
+            Point2D.Double point2 = new Point2D.Double(X[k], Y[k]);
+            points.add(point2);
+
+        }
+
+        poligono.closePath();
+
+
+
+        this.perimetro = this.perimetro();
+        this.area = this.area(X, Y, j);
+        this.areaConSol = this.area(X, Y, j, new Sol());
+
+
+    }*/
 
 
 
