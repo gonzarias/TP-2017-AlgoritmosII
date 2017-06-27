@@ -12,7 +12,7 @@ public class Main {
 
         SistemaSolar sistemaSolar =  new SistemaSolar(alertas);
 
-        //sistemaSolar.addPlaneta(new Planeta(6000,5));
+        //sistemaSolar.addPlaneta(new Planeta(1,1));
 
         sistemaSolar.transcurrirDias(3650);
         sistemaSolar.obtenerEstadisticas();

@@ -59,6 +59,7 @@ public class ObservatorioClimatologico {
 
         if (lluvia.getPerimetro() > this.maxPerimetro) {
             this.diaMaxLluvia = dia;
+            this.maxPerimetro = lluvia.getPerimetro();
         }
     }
 
