@@ -18,8 +18,8 @@ public class CondicionPresionYTemperatura extends Condicion {
 
         this.figuraPoligono = new FiguraPoligono(sistemaSolar.getPlanetas(), sistemaSolar.getSol());
 
-        if (figuraPoligono.getArea() == 0
-                    && figuraPoligono.getAreaConSol() != 0) {
+        if (figuraPoligono.esRecta()
+                && figuraPoligono.getAreaConSol() != 0) {
             //System.out.println("Hoy tenemos Optimas Condiciones de Presiòn y Temperatura");
 
             notificar();
@@ -37,7 +37,7 @@ public class CondicionPresionYTemperatura extends Condicion {
         }
     }
     //Subscriptor
-    public void subscribir(Alertador alertador){
+    public void suscribir(Alertador alertador){
         this.alertados.add (alertador);
 
     }

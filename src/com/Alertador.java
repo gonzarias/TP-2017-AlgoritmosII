@@ -3,13 +3,12 @@ package com;
 import condiciones.CondicionLluvia;
 import condiciones.CondicionPresionYTemperatura;
 import condiciones.CondicionSequia;
+import condiciones.CondicionTsunami;
 
-/**
- * Created by polino on 2017-06-23.
- */
 public interface Alertador {
 
-    public void informar(CondicionLluvia condicionLluvia);
-    public void informar(CondicionPresionYTemperatura condicionPresionYTemperatura);
-    public void informar(CondicionSequia condicionSequia);
+    void informar(CondicionLluvia condicionLluvia);
+    void informar(CondicionPresionYTemperatura condicionPresionYTemperatura);
+    void informar(CondicionSequia condicionSequia);
+    void informar(CondicionTsunami condicionTsunami);
 }

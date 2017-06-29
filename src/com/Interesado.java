@@ -3,10 +3,9 @@ package com;
 import condiciones.CondicionLluvia;
 import condiciones.CondicionPresionYTemperatura;
 import condiciones.CondicionSequia;
+import condiciones.CondicionTsunami;
 
-/**
- * Created by polino on 2017-06-23.
- */
+
 public class Interesado implements Alertador{
     private String interesado;
 
@@ -32,6 +31,12 @@ public class Interesado implements Alertador{
     @Override
     public void informar (CondicionSequia condicionSequia) {
         if (printAlarm) System.out.println ("Estimado: " +interesado + ". El clima presenta una condición de Sequía");
+
+    }
+
+    @Override
+    public void informar (CondicionTsunami condicionTsunami) {
+        if (printAlarm) System.out.println ("Estimado: " +interesado + ". El clima presenta una condición de Tsunami");
 
     }
 

@@ -12,6 +12,11 @@ public class FiguraPoligono{
     private double area;
     private double areaConSol;
     private double perimetro;
+    private boolean esRecta;
+
+    public boolean esRecta() {
+        return esRecta;
+    }
 
     public FiguraPoligono(ArrayList<Planeta> planetas, Sol sol){
 
@@ -45,6 +50,8 @@ public class FiguraPoligono{
         this.perimetro = this.perimetro();
         this.area = this.area(xPoints, yPoints, j);
         this.areaConSol = this.area(xPoints, yPoints, j, sol);
+        this.esRecta = this.esRecta(xPoints, yPoints, j);
+
 
     };
 
@@ -100,7 +107,7 @@ public class FiguraPoligono{
         j = numPoints-1;
 
         for (i=0; i<numPoints; i++)
-        { area = area +  (X[j]+X[i]) * (Y[j]-Y[i]);
+        { area = area +  Math.abs((X[j]+X[i]) * (Y[j]-Y[i]));
             j = i;
         }
         return area/2;
@@ -112,13 +119,13 @@ public class FiguraPoligono{
         double[] xPoints = new double[numPoints+1];
         double[] yPoints = new double[numPoints+1];
 
-        xPoints[0] = sol.getPosicion().getX();
-        yPoints[0] = sol.getPosicion().getY();
-
         for (i=0;i<numPoints;i++){
-            xPoints[i+1] = X[i];
-            yPoints[i+1] = Y[i];
+            xPoints[i] = X[i];
+            yPoints[i] = Y[i];
         }
+
+        xPoints[i] = sol.getPosicion().getX();
+        yPoints[i] = sol.getPosicion().getY();
 
 
         return this.area(xPoints, yPoints, numPoints+1);
@@ -138,35 +145,63 @@ public class FiguraPoligono{
         return perimetro;
     }
 
-    /*
-    // Sobrecarga para prueba posicional
-    public FiguraPoligono(double[] X, double [] Y, int j){
-        int k;
-        this.poligono = new Path2D.Double();
-        this.points = new ArrayList<Point2D.Double>();
+    public boolean esRecta(double[] X, double[] Y, int numPoints){
+        int j,i;
+        double[] pendientes = new double[numPoints-1];
+        double pendiente;
+        double promedioPendiente;
+        double minPendiente = 999999;
+        double maxPendiente = -999999;
 
-        poligono.moveTo(X[0], Y[0]);
+        j = 1;
 
-        Point2D.Double point = new Point2D.Double(X[0], Y[0]);
-        points.add(point);
-
-        for(k = 1; k < X.length; ++k) {
-            poligono.lineTo(X[k], Y[k]);
-            Point2D.Double point2 = new Point2D.Double(X[k], Y[k]);
-            points.add(point2);
-
+        for (i=0; i<numPoints-1; i++) {
+            pendiente = getPendiente(X[i],Y[i],X[j],Y[j]);
+            pendientes[i] = pendiente;
+            j++;
         }
 
-        poligono.closePath();
+        for (double pend : pendientes) {
+            if (pend < minPendiente) {
+                minPendiente = pend;
+            }
+            if (pend > maxPendiente) {
+                maxPendiente = pend;
+            }
+        }
 
+        if (maxPendiente != 0) {
+            promedioPendiente = Math.round(1000d * minPendiente / maxPendiente) / 1000d;
+        } else {
+            if (minPendiente == 0) {
+                promedioPendiente = 1;
+            } else {
+                promedioPendiente = 0;
+            }
+        }
 
+        if (promedioPendiente ==1 && promedioPendiente >= 0.999) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-        this.perimetro = this.perimetro();
-        this.area = this.area(X, Y, j);
-        this.areaConSol = this.area(X, Y, j, new Sol());
+    public double getPendiente(double x0, double y0, double x1, double y1) {
+        double dx = x1 - x0;
+        double dy = y1 - y0;
+        double m = 0;
 
+        if (Math.abs(dx) > Math.abs(dy)) {
+            m = Math.round(100d * dy / dx) / 100d;
+        } else {
+            if (dy != 0) {
+                m = Math.round(100d * dx / dy) / 100d;
+            }
+        }
+        return m;
+    }
 
-    }*/
 
 
 

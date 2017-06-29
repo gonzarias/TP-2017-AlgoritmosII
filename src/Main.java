@@ -1,7 +1,10 @@
 
-import com.FiguraPoligono;
+import com.Alertador;
+import com.Interesado;
 import com.Planeta;
 import com.SistemaSolar;
+import condiciones.Condicion;
+import condiciones.CondicionTsunami;
 
 
 public class Main {
@@ -12,41 +15,24 @@ public class Main {
 
         SistemaSolar sistemaSolar =  new SistemaSolar(alertas);
 
-        //sistemaSolar.addPlaneta(new Planeta(1,1));
-
-        sistemaSolar.transcurrirDias(3650);
+        sistemaSolar.transcurrirDias(360);
         sistemaSolar.obtenerEstadisticas();
 
 
-        /* Agregar planetas y condiciones */
+        /* Agregar planetas ,condiciones e interesados */
+        Planeta banfield = new Planeta(4000,-8);
+        sistemaSolar.addPlaneta(banfield);
 
-        //Prueba posicional del poligono
-        /*
-        double[] X = new double[3];
-        double[] Y = new double[3];
+        Condicion condicionTsunami = CondicionTsunami.crearCondicion();
+        //Agrego interesado
+        Alertador i1 = new Interesado("Pepe de Alderan", alertas);
+        Alertador i2 = new Interesado ("Dario de Banfield", alertas);
+        condicionTsunami.suscribir(i1);
+        condicionTsunami.suscribir(i2);
+        sistemaSolar.addCondicion(condicionTsunami);
 
-        X[0] = 2;
-        Y[0] = 1;
-
-        X[1] = 3;
-        Y[1] = 2;
-
-        X[2] = 4;
-        Y[2] = 3;
-
-        FiguraPoligono figuraPoligono = new FiguraPoligono(X,Y, X.length);
-
-        System.out.println("Area: " + figuraPoligono.getArea());
-        System.out.println("Area con Sol: " + figuraPoligono.getAreaConSol());
-        System.out.println("Perimetro: " + figuraPoligono.getArea());
-        */
-
-
-
-
-
-
-
+        sistemaSolar.transcurrirDias(360);
+        sistemaSolar.obtenerEstadisticas();
 
     }
 }

@@ -1,7 +1,6 @@
 package com;
 
 import clima.Clima;
-import com.sun.org.apache.xpath.internal.SourceTree;
 import condiciones.*;
 
 import java.util.ArrayList;
@@ -11,9 +10,9 @@ public class SistemaSolar {
     private Sol sol;
     private ArrayList<Planeta> planetas;
     private ArrayList<Condicion> condiciones;
-    private ArrayList<Clima> climas;
     private ObservatorioClimatologico observatorioClimatologico;
     private double diasTranscurridos;
+    private boolean alertas;
 
 
     public SistemaSolar(Boolean alertas) {
@@ -22,9 +21,10 @@ public class SistemaSolar {
         this.sol = new Sol();
         this.planetas = new ArrayList<Planeta>();
         this.condiciones = new ArrayList<Condicion>();
-        this.observatorioClimatologico = ObservatorioClimatologico.crearObservatorioClimatologico();
+        this.observatorioClimatologico = new ObservatorioClimatologico();
+        this.alertas = alertas;
 
-        Planeta alderaan = new Planeta(500,1);
+        Planeta alderaan = new Planeta(500,-1);
         Planeta felucia = new Planeta(2000,3);
         Planeta peragus = new Planeta(1000,-5);
 
@@ -43,10 +43,13 @@ public class SistemaSolar {
         //Agrego interesado
         Alertador i1 = new Interesado ("Representante Alderan", alertas);
         Alertador i2 = new Interesado ("Representante Felucia", alertas);
+        Alertador i3 = new Interesado ("Estacion Met. Peragus", alertas);
 
-        condicionLluvia.subscribir (i1);
-        condicionPresionYTemperatura.subscribir(i1);
-        condicionSequia.subscribir(i1);
+        condicionLluvia.suscribir(i1);
+        condicionLluvia.suscribir(i2);
+        condicionPresionYTemperatura.suscribir(i3);
+        condicionSequia.suscribir(i2);
+        condicionSequia.suscribir(i3);
 
     }
 
@@ -62,7 +65,7 @@ public class SistemaSolar {
         return this.sol;
     }
 
-    public void addCondicion(ArrayList<Condicion> condiciones) {
+    public void addCondiciones(ArrayList<Condicion> condiciones) {
         this.condiciones = condiciones;
     }
 
@@ -73,18 +76,21 @@ public class SistemaSolar {
         Clima clima;
         Dia dia;
 
+        this.observatorioClimatologico.resetearEstadistica();
         for (diaActual=1;diaActual<=dias;diaActual++) {
             //Crear dia a agregar en el Observatorio
             dia = new Dia(diaActual);
 
             p = 1;
+
+            if (alertas){
+                System.out.println(" Transcurrido el dia " + diaActual);
+            }
             for (Planeta planeta : this.planetas) {
-                //if (debug) System.out.print("Posicion planeta " + p + ": ");
+                //System.out.print("Posicion planeta " + p + ": ");
                 planeta.transcurrirDia(diaActual);
                 p++;
             }
-
-            //if (debug)  System.out.println(" Transcurrido el dia " + diaActual);
             // Se verifican las condiciones
             for (Condicion condicion : this.condiciones){
                 clima = condicion.evaluar(this);
@@ -101,14 +107,23 @@ public class SistemaSolar {
 
         this.observatorioClimatologico.obetenerEstadistica(this.diasTranscurridos);
 
-        System.out.println("--------------Informe Climatologico-----------------");
-        System.out.format( "-Dias transcurridos ------             %1$8.0f ----%n",this.diasTranscurridos );
-        System.out.format( "---LLuvia                              %1$8.0f ----%n",observatorioClimatologico.getDiasLluvia() );
-        System.out.format( "------Dia Pico                         %1$8.0f ----%n",observatorioClimatologico.getDiaMaxLluvia().getDia());
-        System.out.format( "---Sequia                              %1$8.0f ----%n",observatorioClimatologico.getDiasSequia() );
-        System.out.format( "---Optima Presion y Temperatura        %1$8.0f ----%n",observatorioClimatologico.getDiasOptimaPresionYtemperatura() );
-        System.out.println("----------------------------------------------------");
+        System.out.println("--------------Informe Climatologico----------------------");
+        System.out.format( "-Dias transcurridos ------             %1$8.0f dias ----%n",this.diasTranscurridos );
+        System.out.format("---LLuvia                              %1$8.0f dias ----%n", observatorioClimatologico.getDiasLluvia());
+        if (observatorioClimatologico.getDiasLluvia() != 0) {
+            System.out.format("------Dia Pico                         %1$8.0f dia  ----%n", observatorioClimatologico.getDiaMaxLluvia().getDia());
+            System.out.format("---------Intensidad                    %1$8.0f int. ----%n", observatorioClimatologico.getMaxPerimetro());
+        }
+        System.out.format( "---Sequia                              %1$8.0f dias ----%n",observatorioClimatologico.getDiasSequia() );
+        System.out.format( "---Optima Presion y Temperatura        %1$8.0f dias ----%n",observatorioClimatologico.getDiasOptimaPresionYtemperatura() );
+        if (this.condiciones.contains(CondicionTsunami.crearCondicion())) {
+            System.out.format( "---Tsunami                             %1$8.0f dias ----%n",observatorioClimatologico.getDiasTsunami() );
+        }
+        System.out.println("---------------------------------------------------------");
     }
 
 
+    public void addCondicion(Condicion condicion) {
+        this.condiciones.add(condicion);
+    }
 }

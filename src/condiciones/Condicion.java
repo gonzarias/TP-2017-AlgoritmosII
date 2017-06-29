@@ -16,7 +16,7 @@ public abstract class Condicion {
     abstract public void notificar();
 
     //Se crea el metodo para poder suscribir a los alertados
-    abstract public void subscribir(Alertador alertador);
+    abstract public void suscribir(Alertador alertador);
 
 }
 

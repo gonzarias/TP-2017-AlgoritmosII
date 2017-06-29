@@ -8,7 +8,7 @@ import java.lang.Math;
  * Abstracción de un planeta del sistema solar.Se le puede pedir la posición (x, y) en base a el tiempo, la distancia
  * respecto al sol y la velocidad angular.
  */
-public class Planeta extends CuerpoEstelar{
+public class Planeta extends CuerpoEstelar {
 
     private double distanciaAlSol;
     private double velocidadAngular;
@@ -25,10 +25,10 @@ public class Planeta extends CuerpoEstelar{
 
     public void transcurrirDia(double diaTranscurrido) {
 
-        double x = Math.round(Math.cos(velocidadAngular * diaTranscurrido) * distanciaAlSol);
-        double y = Math.round(Math.sin(velocidadAngular * diaTranscurrido) * distanciaAlSol);
+        double x = Math.round(Math.cos(velocidadAngular * diaTranscurrido) * distanciaAlSol * 100d) / 100d;
+        double y = Math.round(Math.sin(velocidadAngular * diaTranscurrido) * distanciaAlSol * 100d) / 100d;
         //System.out.println("x: " + x + ". y: " + y);
-        this.posicion = new Posicion(x,y);
+        this.posicion = new Posicion(x, y);
     }
 
     public double getDistanciaAlSol() {
@@ -46,5 +46,5 @@ public class Planeta extends CuerpoEstelar{
     public void setVelocidadAngular(double velocidadAngular) {
         this.velocidadAngular = velocidadAngular;
     }
-
 }
+

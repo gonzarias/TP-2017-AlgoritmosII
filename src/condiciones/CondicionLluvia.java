@@ -41,7 +41,7 @@ public class CondicionLluvia extends Condicion {
 
     @Override
     //Subscriptor
-    public void subscribir(Alertador alertador){
+    public void suscribir(Alertador alertador){
         this.alertados.add (alertador);
     }
 }

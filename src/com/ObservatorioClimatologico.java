@@ -7,20 +7,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ObservatorioClimatologico {
-    public static ObservatorioClimatologico observatorioClimatologico;
     private HashMap<Double, Dia> calendarioClimatologico;
     private double diasLluvia = 0;
     private double diasSequia = 0;
     private double diasOptimaPresionYtemperatura = 0;
+    private double diasTsunami = 0;
     private double maxPerimetro;
     private Dia diaMaxLluvia;
-
-    public static ObservatorioClimatologico crearObservatorioClimatologico() {
-        if (observatorioClimatologico == null) {
-            observatorioClimatologico = new ObservatorioClimatologico();
-        }
-        return observatorioClimatologico;
-    }
 
     public ObservatorioClimatologico() {
         this.calendarioClimatologico = new HashMap<Double, Dia>();
@@ -46,7 +39,7 @@ public class ObservatorioClimatologico {
 
 
 
-        for (diaActual=1; diaActual<dias; diaActual++){
+        for (diaActual=1; diaActual<=dias; diaActual++){
             dia = this.calendarioClimatologico.get(diaActual);
             climas = dia.getClimas();
             for (Clima clima : climas){
@@ -78,12 +71,20 @@ public class ObservatorioClimatologico {
         this.diasSequia ++;
     }
 
+    public void addDiasTsunami() {
+        this.diasTsunami ++;
+    }
+
     public double getDiasLluvia() {
         return diasLluvia;
     }
 
     public double getDiasSequia() {
         return diasSequia;
+    }
+
+    public double getDiasTsunami() {
+        return diasTsunami;
     }
 
     public double getDiasOptimaPresionYtemperatura() {
@@ -94,6 +95,17 @@ public class ObservatorioClimatologico {
         return diaMaxLluvia;
     }
 
+    public double getMaxPerimetro() {
+        return maxPerimetro;
+    }
+
+    public void resetearEstadistica() {
+        this.calendarioClimatologico = new HashMap<Double, Dia>();
+        this.diasLluvia = 0;
+        this.diasSequia = 0;
+        this.diasOptimaPresionYtemperatura = 0;
+        this.diasTsunami = 0;
+    }
 }
 
 
